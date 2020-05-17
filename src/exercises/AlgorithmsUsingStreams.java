@@ -98,24 +98,21 @@ public class AlgorithmsUsingStreams {
 	}
 
 	
-	public static Integer countXs(String xString) {
-		String newX = xString.replace("x", ""); //This is counting the ammount of O's and not X's.
-	    return newX.length();
+	public static long countXs(String xString) {
+		
+	  return xString.chars().filter(o -> o == 'o').count();
+		
+	//	String newX = xString.replace("x", ""); //This is counting the ammount of O's and not X's.
+	   // return newX.length();
 	}
 
 	public static Integer addEven(String string) {
-		//Yea, yea I know this code and I suck! I couldn't figure out how to do it the smart streamy way!
-		int[] nums = new int[string.length()];
-		int total = 0;
-		for (int i = 0 ; i < string.length(); i++) {
-			nums[i] = Integer.parseInt(string.substring(i, i+1));;
-			if (nums[i] % 2 == 0)  {
-				System.out.println();
-				total = total + nums[i];
-			}
-		}
+		return string.chars().mapToObj(c -> Character.toString(c))
+				.mapToInt(num -> Integer.parseInt(num))
+			    .filter(num -> num % 2 == 0)
+			    .sum();
 
-		return total;
+                
 	}
 
 	
